@@ -6,7 +6,7 @@ const db = require('./config/keys').mongoURI;
 const users = require('./routes/api/users.js');
 const tweets = require('./routes/api/tweets.js');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })); // for id and password
 app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/tweets', tweets);
