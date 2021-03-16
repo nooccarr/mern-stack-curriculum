@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../../models/User.js');
 
 const jwt = require('jsonwebtoken');
-const keys = ('../../config/keys.js');
+const keys = require('../../config/keys.js');
 
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -38,7 +38,7 @@ router.post('/register', (req, res) => {
             newUser.save()
               // .then(user => res.json(user))
               .then(user => {
-                const payload = { id: usr.id, handle: user.handle };
+                const payload = { id: user.id, handle: user.handle };
 
                 jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                   res.json({
