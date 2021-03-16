@@ -8,19 +8,20 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys.js');
 
 router.post('/register', (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  // const { errors, isValid } = validateRegisterInput(req.body);
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
 
   // Check to make sure nobody has already registered with a duplicate email
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
         // // Throw a 400 error if the email address already exists
-        errors.handle = 'User already exists';
-        return res.status(400).json(errors);
+        return res.status(404).json({ email: 'This user already exists' });
+        // errors.handle = 'User already exists';
+        // return res.status(400).json(errors);
       } else {
         // Otherwise create a new user
         const newUser = new User({
@@ -56,11 +57,11 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+  // const { errors, isValid } = validateLoginInput(req.body);
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
 
   const email = req.body.email;
   const password = req.body.password;
@@ -68,8 +69,9 @@ router.post('/login', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        errors.handle = 'This user does not exist';
         return res.status(404).json({ email: 'This user does not exist' });
+        // errors.handle = 'This user does not exist';
+        // return res.status(404).json(errors);
       }
 
       bcrypt.compare(password, user.password)
@@ -90,9 +92,9 @@ router.post('/login', (req, res) => {
                 });
               });
           } else {
-            // return res.status(400).json({ password: 'Incorrect password' });
-            errors.password = 'Incorrect password';
-            return res.status(400).json(errors);
+            return res.status(400).json({ password: 'Incorrect password' });
+            // errors.password = 'Incorrect password';
+            // return res.status(400).json(errors);
           }
         })
         .catch(err => console.log(err));
