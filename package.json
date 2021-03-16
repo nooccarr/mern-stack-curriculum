@@ -4,19 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nooccarr/mern-stack-curriculum.git"
+    "server": "nodemon --inspect index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nooccarr/mern-stack-curriculum/issues"
-  },
-  "homepage": "https://github.com/nooccarr/mern-stack-curriculum#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
