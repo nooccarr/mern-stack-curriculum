@@ -7,6 +7,21 @@ const User = require('../../models/User.js');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys.js');
 
+const passport = require('passport');
+
+router.get('/test', (req, res) => {
+  res.json({ msg: 'This is the users route' });
+});
+
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // res.json({ msg: 'Success' });
+  res.json({
+    id: req.user.id,
+    handle: req.user.handle,
+    email: req.user.email
+  });
+});
+
 router.post('/register', (req, res) => {
   // const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -100,10 +115,6 @@ router.post('/login', (req, res) => {
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
-});
-
-router.get('/test', (req, res) => {
-  res.json({ msg: 'This is the users route' });
 });
 
 module.exports = router;
