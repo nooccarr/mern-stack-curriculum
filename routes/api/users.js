@@ -33,7 +33,8 @@ router.post('/register', (req, res) => {
   }
 
   // Check to make sure nobody has already registered with a duplicate email
-  User.findOne({ email: req.body.email })
+  User
+    .findOne({ email: req.body.email })
     .then(user => {
       if (user) {
         // // Throw a 400 error if the email address already exists
@@ -85,7 +86,8 @@ router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({ email })
+  User
+    .findOne({ email })
     .then(user => {
       if (!user) {
         // return res.status(404).json({ email: 'This user does not exist' });

@@ -12,29 +12,33 @@ router.get('/test', (req, res) => {
 
 // retrieve all tweets
 router.get('/', (req, res) => {
-  Tweet.find()
-    .sort({ date: -1 })
+  Tweet
+    .find()
+    .sort({ date: -1 }) // in reverse order(newest first)
     .then(tweets => res.json(tweets))
     .catch(err => res.status(404).json({ notweetsfound: 'No tweets found' }));
 });
 
 // retrieve a single user's tweets
 router.get('/user/:user_id', (req, res) => {
-  Tweet.find({ user: req.params.user_id })
+  Tweet
+    .find({ user: req.params.user_id })
     .then(tweets => res.json(tweets))
     .catch(err => res.status(404).json({ notweetsfound: 'No tweets found from that user' }));
 });
 
 // retrieve individual tweets
 router.get('/:id', (req, res) => {
-  Tweet.findById(req.params.id)
+  Tweet
+    .findById(req.params.id)
     .then(tweets => res.json(tweets))
     .catch(err => res.status(404).json({ notweetsfound: 'No tweets found with that ID' }));
 });
 
 // protected route for a user to post tweets
 router.post('/',
-  passport.authenticate('jwt', { session: false }), (req, res) => {
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
     const { errors, isValid } = validateTweetInput(req.body);
 
     if (!isValid) {
@@ -46,7 +50,8 @@ router.post('/',
       user: req.user.id
     });
 
-    newTweet.save()
+    newTweet
+      .save() // returns a promise
       .then(tweet => res.json(tweet))
       .catch(err => console.log(err));
 });
