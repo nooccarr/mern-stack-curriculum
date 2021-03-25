@@ -43,7 +43,7 @@ class NavBar extends React.Component {
         <h1>Chirper</h1>
         { this.getLinks() }
       </div>
-    )
+    );
   }
 }
 

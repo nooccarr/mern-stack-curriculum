@@ -1,4 +1,4 @@
-import { RECEIVE_USER_LOGOUT } from '../actions/session_actions';
+import { RECEIVE_USER_LOGOUT } from '../actions/session_actions.js';
 
 const initialState = {
   isAuthenticated: false,
