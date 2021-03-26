@@ -3,8 +3,8 @@ import session from './session_reducer.js';
 import errors from './errors_reducer.js';
 
 const RootReducer = combineReducers({
-  session,
-  errors
+  errors,
+  session
 });
 
 export default RootReducer;

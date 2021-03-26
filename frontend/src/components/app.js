@@ -1,11 +1,11 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util.js';
 import { Switch } from 'react-router-dom';
-import NavBarContainer from './nav/navbar_container';
+import NavBarContainer from './nav/navbar_container.js';
 
 import MainPage from './main/main_page.js';
-import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import LoginFormContainer from './session/login_form_container.js';
+import SignupFormContainer from './session/signup_form_container.js';
 
 const App = () => (
   <div>
