@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --inspect index.js",
     "start": "node index.js",
+    "server": "nodemon index.js",
+    "debug": "node --inspect index.js",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
